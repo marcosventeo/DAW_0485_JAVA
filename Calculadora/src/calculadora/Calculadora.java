@@ -11,63 +11,52 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Mks
+ * @author jv
  */
-public class Calculadora extends JFrame {
-
-    private JTextField textField1, textField2, resultField;
-    private JButton sumaButton;
-
-    public Calculadora() {
-        setTitle("Calculadora Bàsica");
-        setSize(300, 200);
+public class Calculadora extends JFrame{
+    private JTextField textA, textB, textResul;
+    private JButton bSuma;
+    
+    public Calculadora(String titulo){
+        setTitle(titulo);
+        setSize(300,200); 
+        // FINALIZAR APLICACIÓN AL CERRAR CON LA X
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(4, 2, 2, 2));
-
-        //AÑADIMOS PARA INSERTAR LOS VALORES DE A
+        setLayout(new GridLayout(4,2,10,10));
+        
+        //Etiqueta del primer valor
         add(new JLabel("Valor A:"));
-        textField1 = new JTextField();
-        add(textField1);
-
-        //AÑADIMOS PARA INSERTAR LOS VALORES DE A
+        textA = new JTextField();
+        add(textA);
+         //Etiqueta del segundo valor
         add(new JLabel("Valor B:"));
-        textField2 = new JTextField();
-        add(textField2);
-
-      
-       add(new JLabel(""));
-        //Boton suma
-        sumaButton = new JButton("+");
-        add(sumaButton);
-
-        //AÑADIMOS PARA mostrar resultado
-        add(new JLabel("Resultado:"));
-        resultField = new JTextField();
-        add(resultField);
-
-        sumaButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                calcular();
-
-            }
-
+        textB = new JTextField();
+        add(textB);
+        
+        add(new JLabel(""));
+        bSuma = new JButton("+");
+        add(bSuma);
+        
+        bSuma.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e){
+                  
+                    calcular();
+                 }
         });
-
+        
+        add(new JLabel("Resultado:"));
+        textResul = new JTextField();
+        add(textResul);
     }
-
-    private void calcular() {
-        int iA = Integer.parseInt(textField1.getText());
-        int iB = Integer.parseInt(textField2.getText());
-        int resultat = iA + iB;
-        resultField.setText(String.valueOf(resultat));
-
+    
+    private void calcular(){
+        int iA = Integer.parseInt(textA.getText());
+        int iB = Integer.parseInt(textB.getText());
+        int resultado = iA + iB;
+        textResul.setText(String.valueOf(resultado));
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Calculadora().setVisible(true));
-    }
-
+    
+    
+    
 }
